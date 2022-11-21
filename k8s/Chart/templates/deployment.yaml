@@ -21,5 +21,12 @@ spec:
                 secretKeyRef:
                   name: credentials
                   key: password
+          volumeMounts:
+            - name: config-volume
+              mountPath: "/usr/src/app/config"
           ports:
             - containerPort: {{ .Values.container.port }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: cm
